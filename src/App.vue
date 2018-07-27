@@ -29,7 +29,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .page {
   height: 100vh;
   display: flex;
