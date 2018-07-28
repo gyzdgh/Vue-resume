@@ -1,4 +1,5 @@
 <template>
+  <!-- 在页面添加三大块使用flex -->
   <div class=page>
     <header>
       <Topbar/>
@@ -11,12 +12,16 @@
 </template>
 
 <script>
+// 引入 normalize.css
 import "normalize.css/normalize.css";
+// 引入 reset.css 重置样式
 import "./assets/reset.css";
 
+//引入三大块
 import Topbar from "./components/Topbar";
 import ResumeEditor from "./components/ResumeEditor";
 import ResumePreview from "./components/ResumePreview";
+//引入图标
 import icons from "./assets/icons";
 
 export default {
@@ -26,7 +31,9 @@ export default {
       text: "你好"
     };
   },
+  //三大块
   components: { Topbar, ResumeEditor, ResumePreview },
+  //创建icon图标
   created() {
     document.body.insertAdjacentHTML("afterbegin", icons);
   }
@@ -34,6 +41,7 @@ export default {
 </script>
 
 <style lang="scss">
+//使用scss样式
 .page {
   height: 100vh;
   display: flex;
