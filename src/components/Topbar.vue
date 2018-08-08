@@ -55,7 +55,7 @@ button {  // 由于加了 scoped， 所以这个 button 选择器只在本组件
     outline-style: none;
   }
   &.primary {
-    background: #02af5f;
+    background: #4b94fc;
     color: white;
     outline-style: none;
     margin-right: 50px;

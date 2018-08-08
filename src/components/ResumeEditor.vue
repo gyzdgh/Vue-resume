@@ -14,19 +14,19 @@
       <!-- 切换展示区 -->
       <li v-for="item in resume.config" v-show="item.field === selected">
        <div v-if="resume[item.field] instanceof Array">
-          <div class="subitem" v-for="subitem in resume[item.field]">
+          <div class="subitem" v-for="(subitem, i) in resume[item.field]">
             <div class="resumeField" v-for="(value,key) in subitem">
               <label> {{key}} </label>
-              <input type="text"  :value = "value" />
+              <input type="text" :value="value" @input="changeResumeField(`${item.field}.${i}.${key}`, $event.target.value)" >
             </div>
             <hr>
-            <button class="add"  @click="addResumeSubfield(item.field)" >添加</button>
-            <button class="del">删除</button>
+            <span class="add"  @click="addResumeSubfield(item.field)" >添加</span>
+            <span class="del">删除</span>
           </div>
         </div>
       <div v-else class="resumeField" v-for="(value,key) in resume[item.field]">
           <label> {{key}} </label>
-          <input type="text" v-model="resume[item.field][key]">
+          <input type="text" :value="value" @input="changeResumeField(`${item.field}.${key}`, $event.target.value)" >
         </div>
       </li>
     </ol>
@@ -50,8 +50,11 @@ export default {
       }
     },
     methods: {
-      addResumeSubfield(field){
-      this.$store.commit('addResumeSubfield',{field})
+      changeResumeField(path, value){
+        this.$store.commit('updateResume',{
+          path,
+          value
+        })
       }
     }
   }
@@ -76,6 +79,7 @@ export default {
         align-items: center;
         margin-top: 16px;
         margin-bottom: 16px;
+        cursor: pointer;
         &.active {
           background: white;
           color: black;
@@ -125,7 +129,7 @@ hr {
   background-color: #15222a;
   color: #fff;
   font-size: 12px;
-  padding: 5px;
+  padding: 3px 10px;
   border-radius: 3px;
   outline: none;
 }
