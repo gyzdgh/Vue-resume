@@ -28,6 +28,8 @@ import icons from "./assets/icons";
 
 //引入数据
 import store from './store/index'
+import AV from './lib/leancloud'
+import getAVUser from './lib/getAVUser'
 
 export default {
   name: "app",
@@ -42,6 +44,7 @@ export default {
         state = JSON.parse(state) 
       }
       this.$store.commit('initState', state)
+      this.$store.commit('setUser', getAVUser())
   }
 };
 </script>
