@@ -14,29 +14,31 @@ export default new Vuex.Store({
         { field: 'contacts', icon: 'phone' },
       ],
       profile: {
-        name: '',
-        city: '',
-        title: ''
+        name: '高远远',
+        city: '美丽的齐齐哈尔',
+        title: '首席顾问'
       },
       'workHistory': [
-        { company: 'AL', content: '我的第二份工作是' }
+        { company: '前程似锦公司', content: '这是公司介绍这是公司介绍这是公司介绍这是公司介绍这是公司介绍这是公司介绍这是公司介绍'}
       ],
       education: [
-        { school: 'AL', content: '文字' }
+        { school: '超人学院', content: '五级超人' }
       ],
       projects: [
-        { name: 'project A', content: '文字' }
+        { name: '项目', content: '这是项目介绍这是项目介绍这是项目介绍这是项目介绍这是项目介绍这是项目介绍这是项目介绍这是项目介绍这是项目介绍' }
       ],
       awards: [
-        { name: 'awards A', content: '文字' }
+        { name: '大红花', content: '大红花的来历' },
+        { name: '三好学生', content: '三好学生的来历' },
+        { name: '再来一包', content: '连续获得十次再来一包干脆面' }
       ],
       contacts: [
-        { contact: 'phone', content: '13812345678' }
+        { contact: 'phone', content: '18828883883886' }
       ],
     }
   },
   mutations: {
-    switchTab (state, payload){
+    switchTab(state, payload) {
       state.selected = payload
     }
 }

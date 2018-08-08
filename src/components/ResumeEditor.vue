@@ -50,6 +50,9 @@ export default {
       }
     },
     methods: {
+      addResumeSubfield(field){
+      this.$store.commit('addResumeSubfield',{field})
+      }
     }
   }
 </script>
