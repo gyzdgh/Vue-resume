@@ -1,13 +1,15 @@
 <template>
   <!-- 在页面添加三大块使用flex -->
-  <div class=page>
-    <header>
-      <Topbar/>
-    </header>
-    <main>
-      <ResumeEditor/>
-      <ResumePreview/>
-    </main>
+  <div>
+    <div class=page>
+      <header>
+        <Topbar/>
+      </header>
+      <main>
+        <ResumeEditor/>
+        <ResumePreview/>
+      </main>
+    </div>
   </div>
 </template>
 
@@ -31,7 +33,7 @@ export default {
   name: "app",
   store,
   //三大块
-  components: { Topbar, ResumeEditor, ResumePreview },
+  components: { Topbar, ResumeEditor, ResumePreview},
   //创建icon图标
   created() {
     document.body.insertAdjacentHTML("afterbegin", icons);
