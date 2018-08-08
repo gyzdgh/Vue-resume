@@ -24,13 +24,12 @@ import ResumePreview from "./components/ResumePreview";
 //引入图标
 import icons from "./assets/icons";
 
+//引入数据
+import store from './store/index'
+
 export default {
   name: "app",
-  data: function() {
-    return {
-      text: "你好"
-    };
-  },
+  store,
   //三大块
   components: { Topbar, ResumeEditor, ResumePreview },
   //创建icon图标
