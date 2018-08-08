@@ -20,8 +20,8 @@
               <input type="text" :value="value" @input="changeResumeField(`${item.field}.${i}.${key}`, $event.target.value)" >
             </div>
             <hr>
-            <span class="add"  @click="addResumeSubfield(item.field)" >添加</span>
-            <span class="del">删除</span>
+           <a class="add" @click.prevent="addList(item.field)" >添加</a>
+             <a class="del" @click.prevent="remList(item.field,i)" >删除</a>
           </div>
         </div>
       <div v-else class="resumeField" v-for="(value,key) in resume[item.field]">
@@ -54,6 +54,15 @@ export default {
         this.$store.commit('updateResume',{
           path,
           value
+        })
+      },
+       addList(subitem){
+      this.$store.commit('addList',subitem)
+    },
+    remList(subitem,i){
+      this.$store.commit('removeList',{
+        subitem:subitem,
+        i:i
         })
       }
     }
@@ -132,6 +141,7 @@ hr {
   padding: 3px 10px;
   border-radius: 3px;
   outline: none;
+  text-decoration: none;
 }
 .add:hover{
   background-color: #ccc;
