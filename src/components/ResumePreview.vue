@@ -12,17 +12,7 @@
       </p>
     </section>
 
-    <section data-name="projects" v-show="resume.education">
-      <h2>项目经历</h2>
-      <ol>
-        <li v-for="item in resume.projects">
-          <h3>{{item.name}}</h3>
-          <p v-show="item.contents"> {{item.contents}} </p>
-        </li>
-      </ol>
-    </section>
-
-     <section data-name="workHistory" v-show="resume.workHistory">
+    <section data-name="workHistory" v-show="resume.workHistory">
       <h2>工作经历</h2>
       <ol>
         <li v-for="item in resume.workHistory">
@@ -32,13 +22,23 @@
       </ol>
     </section>
 
-     <section data-name="education" v-show="resume.education">
+    <section data-name="education" v-show="resume.education">
       <h2>毕业院校</h2>
       <ol>
         <li v-for="item in resume.education">
           <h3>{{item.school}}
             <span v-show="item.content"> - {{item.content}} </span>
           </h3>
+        </li>
+      </ol>
+    </section>
+
+    <section data-name="projects" v-show="resume.education">
+      <h2>项目经历</h2>
+      <ol>
+        <li v-for="item in resume.projects">
+          <h3>{{item.name}}</h3>
+          <p v-show="item.contents"> {{item.contents}} </p>
         </li>
       </ol>
     </section>

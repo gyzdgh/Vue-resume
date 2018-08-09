@@ -18,7 +18,7 @@
             <div class="resumeField" v-for="(value,key) in subitem">
               <label> {{key}} </label>
               <input v-show="key !='contents'" type="text" :value="value" @input="changeResumeField(`${item.field}.${i}.${key}`, $event.target.value)" >
-              <textarea v-show="key=='contents'" rows="1" cols="20" :value="value" @input="changeResumeField(`${item.field}.${i}.${key}`, $event.target.value)"></textarea>
+              <textarea v-show="key=='contents'" rows="1" cols="20" :value="value" @input="changeResumeField(`${item.field}.${i}.${key}`, $event.target.value)" ></textarea>
             </div>
             <hr> 
             <button class="del" @click.prevent="remList(item.field,i)" >删除</button>

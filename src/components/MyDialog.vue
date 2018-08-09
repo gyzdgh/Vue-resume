@@ -47,5 +47,8 @@
       padding: 16px;
     }
   }
+  .close{
+    cursor: pointer;
+  }
 </style>
 

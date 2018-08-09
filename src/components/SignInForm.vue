@@ -10,7 +10,7 @@
         <input type="password" required v-model="formData.password">
       </div>
       <div class="actions">
-        <input type="submit" value="提交">
+        <input type="submit" value="登录" class="add">
         <span>{{errorMessage}}</span>
       </div>
     </form>
@@ -43,3 +43,35 @@ import getAVUser from '../lib/getAVUser'
   }
 }
 </script>
+
+<style scoped>
+  label{
+    text-align: center;
+    display:inline-block;
+    width:3em;
+  }
+  input{
+    margin: 10px 0;
+    border: 1px solid #b8b8b8;
+    height: 30px;
+    padding: 0 8px;
+    background-color:white;
+  }
+  input:focus{
+    outline: none;
+    border-color: #4b94fc;
+  }
+  .add{
+    margin-top:10px;
+    margin-left: 5px;
+    border:none;
+    cursor: pointer;
+    background-color: #15222a;
+    color: #fff;
+    font-size: 12px;
+  }
+  .add:hover{
+  background-color: #ccc;
+  color: #000;
+  }
+</style>
