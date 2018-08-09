@@ -17,12 +17,13 @@
           <div class="subitem" v-for="(subitem, i) in resume[item.field]">
             <div class="resumeField" v-for="(value,key) in subitem">
               <label> {{key}} </label>
-              <input type="text" :value="value" @input="changeResumeField(`${item.field}.${i}.${key}`, $event.target.value)" >
+              <input v-show="key !='contents'" type="text" :value="value" @input="changeResumeField(`${item.field}.${i}.${key}`, $event.target.value)" >
+              <textarea v-show="key=='contents'" rows="1" cols="20" :value="value" @input="changeResumeField(`${item.field}.${i}.${key}`, $event.target.value)"></textarea>
             </div>
-            <hr>
-           <a class="add" @click.prevent="addList(item.field)" >添加</a>
-             <a class="del" @click.prevent="remList(item.field,i)" >删除</a>
+            <hr> 
+            <button class="del" @click.prevent="remList(item.field,i)" >删除</button>
           </div>
+          <button class="add" @click.prevent="addList(item.field)" >添加</button>
         </div>
       <div v-else class="resumeField" v-for="(value,key) in resume[item.field]">
           <label> {{key}} </label>
@@ -56,10 +57,10 @@ export default {
           value
         })
       },
-       addList(subitem){
+      addList(subitem){
       this.$store.commit('addList',subitem)
-    },
-    remList(subitem,i){
+      },
+      remList(subitem,i){
       this.$store.commit('removeList',{
         subitem:subitem,
         i:i
@@ -109,13 +110,14 @@ export default {
 }
 ol {
   list-style: none;
+  overflow:auto;
 }
 .resumeField {
   > label {
     display: block;
   }
   input[type="text"] {
-    margin: 16px 0;
+    margin: 10px 0;
     border: 1px solid #b8b8b8;
     width: 100%;
     height: 40px;
@@ -125,11 +127,25 @@ ol {
     outline: none;
     border-color: #4b94fc;
   }
+  textarea{
+    margin: 10px 0 5px 0;
+    border:1px solid #ddd;
+    width:100%;
+    height:40px;
+    padding:5px 8px;
+    transition:0.3s;
+  }
+  textarea:focus{
+    outline-style: none;
+    border-color: #4b94fc;
+    height:10em;
+    transition:0.5s
+  }
 }
 hr {
   border: none;
   border-top: 1px solid #ddd;
-  margin: 5px 0;
+  margin: 3px 0;
 }
 .add,
 .del{
@@ -139,6 +155,7 @@ hr {
   color: #fff;
   font-size: 12px;
   padding: 3px 10px;
+  margin-top:10px;
   border-radius: 3px;
   outline: none;
   text-decoration: none;

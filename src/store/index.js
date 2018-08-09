@@ -20,26 +20,24 @@ export default new Vuex.Store({
         { field: 'contacts', icon: 'phone' },
       ],
       profile: {
-        name: '高远远',
-        city: '美丽的齐齐哈尔',
-        title: '首席顾问'
+        name: '',
+        city: '',
+        title: ''
       },
       'workHistory': [
-        { company: '前程似锦公司', content: '这是公司介绍这是公司介绍这是公司介绍这是公司介绍这是公司介绍这是公司介绍这是公司介绍'}
+        { company: '', content: ''}
       ],
       education: [
-        { school: '超人学院', content: '五级超人' }
+        { school: '', content: '' }
       ],
       projects: [
-        { name: '项目', content: '这是项目介绍这是项目介绍这是项目介绍这是项目介绍这是项目介绍这是项目介绍这是项目介绍这是项目介绍这是项目介绍' }
+        { name: '', content: '' }
       ],
       awards: [
-        { name: '大红花', content: '大红花的来历' },
-        { name: '三好学生', content: '三好学生的来历' },
-        { name: '再来一包', content: '连续获得十次再来一包干脆面' }
+        { name: '', content: '' },
       ],
       contacts: [
-        { contact: 'phone', content: '18828883883886' }
+        { contact: '', content: '' }
       ],
     }
   },
@@ -60,6 +58,47 @@ export default new Vuex.Store({
     },
     removeUser(state){
       state.user.id = ''
+    },
+    removeList(state,payload){
+      let {subitem,i} = payload;
+      switch(subitem){
+        case 'workHistory':
+          state.resume[subitem].splice(i,1)
+          break;
+        case 'education':
+          state.resume[subitem].splice(i,1)
+          break;
+        case 'projects':
+          state.resume[subitem].splice(i,1)
+          break;
+        case 'awards':
+          state.resume[subitem].splice(i,1)
+          break;
+        case 'contacts':
+          state.resume[subitem].splice(i,1)
+          break;
       }
+      localStorage.setItem('state', JSON.stringify(state))
+    },
+    addList(state,payload){
+      switch(payload){
+        case 'workHistory':
+          state.resume[payload].push({ company: '', contents: ``})
+          break;
+        case 'education':
+          state.resume[payload].push({ school: '', content: '' })
+          break;
+        case 'projects':
+          state.resume[payload].push({ name: '', contents: '' })
+          break;
+        case 'awards':
+          state.resume[payload].push({ name: '', content: '' })
+          break;
+        case 'contacts':
+          state.resume[payload].push({ contact: '', content: '' })
+          break;
+      }
+      localStorage.setItem('state', JSON.stringify(state))
     }
+  }
 })
