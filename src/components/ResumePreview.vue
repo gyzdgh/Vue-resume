@@ -5,10 +5,9 @@
       <h1>
         {{resume.profile.name}}
       </h1>
-      <h2>{{resume.profile.title}}</h2>
+      <h2>{{resume.profile.city}}</h2>
       <p>
-        <small>{{resume.profile.city}}</small>
-        <small>{{resume.profile.birthday}}</small>
+        <small>{{resume.profile.title}}</small>
       </p>
     </section>
 
@@ -70,6 +69,7 @@
     name: 'ResumePreview',
     computed: {
       resume() {
+        //返回数据
         return this.$store.state.resume
       }
     }

@@ -1,5 +1,7 @@
+//引入全局数据
 import Vuex from 'vuex'
 import Vue from 'vue'
+//引入 object-path，方便查找 resume 的属性
 import objectPath from "object-path"
 
 Vue.use(Vuex) 
@@ -42,23 +44,31 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    //数据保存到 localStorage
     initState(state, payload){
       Object.assign(state, payload)
     },
+    //切换按钮
     switchTab(state, payload) {
       state.selected = payload
+      //数据保存到 localStorage
       localStorage.setItem('state', JSON.stringify(state))
     },
+    //上传数据
     updateResume(state, {path, value}){
       objectPath.set(state.resume, path, value)
+      //数据保存到 localStorage
       localStorage.setItem('state', JSON.stringify(state))
     },
+    //设置用户
     setUser(state, payload){
       Object.assign(state.user, payload)
     },
+    //登出用户
     removeUser(state){
       state.user.id = ''
     },
+    //移除对话框
     removeList(state,payload){
       let {subitem,i} = payload;
       switch(subitem){
@@ -78,8 +88,10 @@ export default new Vuex.Store({
           state.resume[subitem].splice(i,1)
           break;
       }
+      //数据保存到 localStorage
       localStorage.setItem('state', JSON.stringify(state))
     },
+    //添加对话框
     addList(state,payload){
       switch(payload){
         case 'workHistory':
@@ -98,6 +110,7 @@ export default new Vuex.Store({
           state.resume[payload].push({ contact: '', content: '' })
           break;
       }
+      //数据保存到 localStorage
       localStorage.setItem('state', JSON.stringify(state))
     }
   }

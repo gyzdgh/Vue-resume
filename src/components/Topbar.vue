@@ -9,11 +9,11 @@
         </div>
         <div v-else class="userActions">
           <a class="button" href="#" @click.prevent="signUpDialogVisible = true">注册</a>
-          <a class="button" href="#" @click.prevent="signInDialogVisible = true">登录</a>
+          <a class="show" href="#" @click.prevent="signInDialogVisible = true">登录</a>
         </div>
-        <button class="show">预览</button>
       </div>
     </div>
+    <!-- 注册/登陆对话框 -->
     <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
       <SignUpForm @success="signIn($event)"/>
     </MyDialog>
@@ -25,15 +25,20 @@
 </template>
 
 <script>
+//引入 对话框
 import MyDialog from './MyDialog'
+//引入 注册对话框
 import SignUpForm from './SignUpForm'
+//引入登陆对话框
 import SignInForm from './SignInForm'
+//引入数据库
 import AV from '../lib/leancloud'
 
 export default {
   name: 'Topbar',
   data(){
     return {
+      //初始化 注册/登陆框的默认状态为 false
       signUpDialogVisible: false,
       signInDialogVisible: false,
     }
@@ -50,15 +55,17 @@ export default {
      MyDialog, SignUpForm, SignInForm
   },
   methods: {
+    //登出
     signOut(){
       AV.User.logOut()
       this.$store.commit('removeUser')
     },
+    //登入
     signIn(user){
       this.signUpDialogVisible = false
       this.signInDialogVisible = false
       this.$store.commit('setUser', user)
-    }
+    },
   }
 };
 </script>

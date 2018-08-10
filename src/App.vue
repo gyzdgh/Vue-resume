@@ -26,9 +26,11 @@ import ResumePreview from "./components/ResumePreview";
 //引入图标
 import icons from "./assets/icons";
 
-//引入数据
+//引入原有数据
 import store from './store/index'
+//引入数据库
 import AV from './lib/leancloud'
+//获取用户
 import getAVUser from './lib/getAVUser'
 
 export default {
@@ -39,6 +41,7 @@ export default {
   //创建icon图标
   created() {
     document.body.insertAdjacentHTML("afterbegin", icons);
+    //数据保存到 localStorage
     let state = localStorage.getItem('state')
       if(state){
         state = JSON.parse(state) 

@@ -37,11 +37,15 @@
 <script>
 export default {
   name: "ResumeEditor",
+  //读取数据
   computed: {
+    //使数据可写
       selected:{
+        //获取数据
         get(){
           return this.$store.state.selected
         },
+        //设置数据
         set(value){
           return this.$store.commit('switchTab', value)
         }
@@ -51,15 +55,18 @@ export default {
       }
     },
     methods: {
+      //使所有字段都可写
       changeResumeField(path, value){
         this.$store.commit('updateResume',{
           path,
           value
         })
       },
+      //添加一项对话框
       addList(subitem){
       this.$store.commit('addList',subitem)
       },
+      //删除一项对话框
       remList(subitem,i){
       this.$store.commit('removeList',{
         subitem:subitem,

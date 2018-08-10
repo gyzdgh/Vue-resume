@@ -16,32 +16,38 @@
     </form>
   </div>
 </template>
+
  <script>
- import AV from '../lib/leancloud'
-import getErrorMessage from '../lib/getErrorMessage'
-import getAVUser from '../lib/getAVUser'
- export default {
-  name: 'SignInForm',
-  data(){
-    return {
-      formData: {
-        username: '',
-        password: ''
-      },
-      errorMessage: ''
-    }
-  },
-  methods: {
-    signIn(){
-      let {username, password} = this.formData
-      AV.User.logIn(username,password).then(()=> {
-        this.$emit('success', getAVUser())
-      }, (error)=> {
-        this.errorMessage = getErrorMessage(error)
-      });
+ //引入数据库
+  import AV from '../lib/leancloud'
+  //获取错误的消息
+  import getErrorMessage from '../lib/getErrorMessage'
+  //获取当前用户
+  import getAVUser from '../lib/getAVUser'
+  export default {
+    name: 'SignInForm',
+    data(){
+      return {
+        formData: {
+          username: '',
+          password: ''
+        },
+        errorMessage: ''
+      }
+    },
+    methods: {
+      signIn(){
+        //声明用户名和密码是当前表单的数据
+        let {username, password} = this.formData
+        AV.User.logIn(username,password).then(()=> {
+          //登录成功后关闭对话框、更新 store
+          this.$emit('success', getAVUser())
+        }, (error)=> {
+          this.errorMessage = getErrorMessage(error)
+        });
+      }
     }
   }
-}
 </script>
 
 <style scoped>
